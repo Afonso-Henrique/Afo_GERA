@@ -1,2 +1,2 @@
-# Afo_GERA
+# GERA
 GERA
