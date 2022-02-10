@@ -1,0 +1,57 @@
+#include <Servo.h>
+
+#define servomotor1 6 //servo motor da base
+#define potenciometro1 A0 //potenciometro da base
+
+#define servomotor2 3 //servo motor da garra
+#define potenciometro2 A1 //potenciometro da garra
+
+#define servomotor3 6 //servo motor do braço horizontal
+#define potenciometro3 A2 //potenciometro do braço horizontal
+
+
+Servo servobase; //cria o objeto base
+Servo servogarra; //cria o objeto garra
+Servo servoBH;  //cria o objeto braço horizontal
+
+void setup() {
+  // put your setup code here, to run once:
+
+  servobase.attach(servomotor1); //conecta o servo à base
+  servogarra.attach(servomotor2); //conecta o servo à garra
+  servoBH.attach(servomotor3);  //conecta o servo ao braço horizontal
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+  //Fazendo funcionar braço vertical - pino 9   COM DEFEITO - DESCOBRIR OQ É
+  int angulobase = analogRead(potenciometro1);
+  angulobase = map(angulobase, 0, 1023, 45, 180);
+  servobase.write(angulobase);
+  delay(15);
+
+
+  //Fazendo funcionar a garra - pin 3
+  int angulogarra = analogRead(potenciometro2);
+  angulogarra = map(angulogarra, 0, 1023, 30,90);
+  servogarra.write(angulogarra);
+  delay(15); 
+  
+
+  //Fazendo funcionar a rotação - pino 6
+  int angulobase = analogRead(potenciometro1);
+  angulobase = map(angulobase, 0, 1023, 0, 180);
+  servobase.write(angulobase);
+  delay(15); 
+
+
+  //Fazendo funcionar braço horizontal - pino 5
+  int anguloBH = analogRead(potenciometro3);
+  anguloBH = map(anguloBH, 0, 1023, 0, 30);
+  servoBH.write(anguloBH);
+  delay(15); 
+  
+
+}
